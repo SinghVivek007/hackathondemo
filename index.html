@@ -1,27 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Screen Recording</title>
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <title>Parcel Sandbox</title>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="src/styles.css" />
   </head>
-
   <body>
-    <div class="layout">
-  <div class="layout__video">
-    <video class="video__player video__player--recorder" id="js-video-recorder" autoplay muted></video>
-    <div class="video__buttons">
-      <button class="video__buttons video__buttons--record" id="js-button-record" >Start Recording</button>
-      <button class="video__buttons video__buttons--play" id="js-button-play" >Play</button>
-      <button class="video__buttons video__buttons--download" id="js-button-download" >Download</button>
-    </div>
-  </div>
-  <div class="layout__video">
-    <video class="video__player video__player--player" id="js-video-player" loop controls></video>
-  </div>
-</div>
-
+    <video class="video" width="600px" controls></video>
+    <button class="record-btn">record</button>
 
     <script src="src/index.js"></script>
   </body>
