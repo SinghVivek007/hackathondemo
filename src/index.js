@@ -1,4 +1,4 @@
-let btn = document.querySelector(".submitBtn")
+let btn = document.querySelector(".record-btn")
 
 btn.addEventListener("click", async function () {
   let stream = await navigator.mediaDevices.getDisplayMedia({
