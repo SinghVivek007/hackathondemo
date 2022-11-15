@@ -8,13 +8,20 @@
   </head>
 
   <body>
-    <button id="start">
-      Start Recording
-    </button>
-    <button id="stop" disabled>
-      Stop Recording
-    </button>
-    <video autoplay />
+    <div class="layout">
+  <div class="layout__video">
+    <video class="video__player video__player--recorder" id="js-video-recorder" autoplay muted></video>
+    <div class="video__buttons">
+      <button class="video__buttons video__buttons--record" id="js-button-record" disabled>Start Recording</button>
+      <button class="video__buttons video__buttons--play" id="js-button-play" disabled>Play</button>
+      <button class="video__buttons video__buttons--download" id="js-button-download" disabled>Download</button>
+    </div>
+  </div>
+  <div class="layout__video">
+    <video class="video__player video__player--player" id="js-video-player" loop controls></video>
+  </div>
+</div>
+
 
     <script src="src/index.js"></script>
   </body>
