@@ -24,8 +24,8 @@ btn.addEventListener("click", async function () {
       })
       let url = URL.createObjectURL(blob)
 
-      let video = document.querySelector("video")
-      video.src = url
+     // let video = document.querySelector("video")
+    //  video.src = url
 
       let a = document.createElement('a')
       a.href = url
