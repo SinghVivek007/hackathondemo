@@ -1,10 +1,10 @@
 .layout {
   background-color: #fff;
-  margin: 50px;
+  margin: 0px;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 0vh;
   
   &__video {
     .video__player {
@@ -19,7 +19,7 @@
         }
 
         &--player {
-          margin-left: 50px;
+          margin-left: 0px;
         } 
       }
     }
@@ -41,7 +41,7 @@
   }
 }
 
-@media screen and (max-width: 1150px) {
+@media screen and (max-width: 0px) {
   .layout {
     flex-direction: column;
     
