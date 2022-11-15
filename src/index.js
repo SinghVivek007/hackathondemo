@@ -21,10 +21,6 @@ stopElem.addEventListener("click", (evt) => {
   stopCapture();
 }, false);
 
-    //we have to start the recorder manually
-    mediaRecorder.start()
-
-
 console.log = (msg) => logElem.innerHTML += `${msg}<br>`;
 console.error = (msg) => logElem.innerHTML += `<span class="error">${msg}</span><br>`;
 console.warn = (msg) => logElem.innerHTML += `<span class="warn">${msg}<span><br>`;
