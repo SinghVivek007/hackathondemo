@@ -41,14 +41,18 @@ function stopCapture(evt) {
   let tracks = videoElem.srcObject.getTracks();
 
   tracks.forEach((track) => track.stop());
+   
+  let url = URL.createObjectURL(tracks)
+  
+  let a = document.createElement('a')
+      a.href = url
+      a.download = 'video.webm'
+      a.click()
   videoElem.srcObject = null;
 }
 
 function dumpOptionsInfo() {
   const videoTrack = videoElem.srcObject.getVideoTracks()[0];
 
-  console.info("Track settings:");
-  console.info(JSON.stringify(videoTrack.getSettings(), null, 2));
-  console.info("Track constraints:");
-  console.info(JSON.stringify(videoTrack.getConstraints(), null, 2));
+  
 }
