@@ -101,7 +101,7 @@
 .inputGroup input:focus{
     outline: none;
 }
-.submitBtn{
+.record-btn{
     width: 150px;
     padding: 1em;
     margin: 2em 0;
@@ -115,7 +115,7 @@
     font-weight: 600;
     transition: all 0.3s ease-in-out;
 }
-.submitBtn:hover{
+.record-btn:hover{
     background-color: rgb(255 255 255 / 39%);
     color: #fff;
     transition: all 0.3s ease-in-out;
