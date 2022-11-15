@@ -1,58 +1,38 @@
-const videoElem = document.getElementById("video");
-const logElem = document.getElementById("log");
-const startElem = document.getElementById("start");
-const stopElem = document.getElementById("stop");
+let btn = document.querySelector(".record-btn")
 
-// Options for getDisplayMedia()
+btn.addEventListener("click", async function () {
+  let stream = await navigator.mediaDevices.getDisplayMedia({
+    video: true
+  })
 
-const displayMediaOptions = {
-  video: {
-    cursor: "always"
-  },
-  audio: false
-};
+  //needed for better browser support
+  const mime = MediaRecorder.isTypeSupported("video/webm; codecs=vp9") 
+             ? "video/webm; codecs=vp9" 
+             : "video/webm"
+    let mediaRecorder = new MediaRecorder(stream, {
+        mimeType: mime
+    })
 
-// Set event listeners for the start and stop buttons
-startElem.addEventListener("click", (evt) => {
-  startCapture();
-}, false);
+    let chunks = []
+    mediaRecorder.addEventListener('dataavailable', function(e) {
+        chunks.push(e.data)
+    })
 
-stopElem.addEventListener("click", (evt) => {
-  stopCapture();
-}, false);
+        mediaRecorder.addEventListener('stop', function(){
+      let blob = new Blob(chunks, {
+          type: chunks[0].type
+      })
+      let url = URL.createObjectURL(blob)
 
-console.log = (msg) => logElem.innerHTML += `${msg}<br>`;
-console.error = (msg) => logElem.innerHTML += `<span class="error">${msg}</span><br>`;
-console.warn = (msg) => logElem.innerHTML += `<span class="warn">${msg}<span><br>`;
-console.info = (msg) => logElem.innerHTML += `<span class="info">${msg}</span><br>`;
+     // let video = document.querySelector("video")
+    //  video.src = url
 
-async function startCapture() {
-  logElem.innerHTML = "";
-
-  try {
-    videoElem.srcObject = await navigator.mediaDevices.getDisplayMedia(displayMediaOptions);
-    dumpOptionsInfo();
-  } catch (err) {
-    console.error(`Error: ${err}`);
-  }
-}
-
-function stopCapture(evt) {
-  let tracks = videoElem.srcObject.getTracks();
-
-  tracks.forEach((track) => track.stop());
-   
-  let url = URL.createObjectURL(tracks)
-  
-  let a = document.createElement('a')
+      let a = document.createElement('a')
       a.href = url
       a.download = 'video.webm'
       a.click()
-  videoElem.srcObject = null;
-}
+  })
 
-function dumpOptionsInfo() {
-  const videoTrack = videoElem.srcObject.getVideoTracks()[0];
-
-  
-}
+    //we have to start the recorder manually
+    mediaRecorder.start()
+})
