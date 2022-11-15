@@ -1,37 +1,25 @@
-let btn = document.querySelector(".record-btn")
+const videoElem = document.getElementById("video");
+const logElem = document.getElementById("log");
+const startElem = document.getElementById("start");
+const stopElem = document.getElementById("stop");
 
-btn.addEventListener("click", async function () {
-  let stream = await navigator.mediaDevices.getDisplayMedia({
-    video: true
-  })
+// Options for getDisplayMedia()
 
-  //needed for better browser support
-  const mime = MediaRecorder.isTypeSupported("video/webm; codecs=vp9") 
-             ? "video/webm; codecs=vp9" 
-             : "video/webm"
-    let mediaRecorder = new MediaRecorder(stream, {
-        mimeType: mime
-    })
+const displayMediaOptions = {
+  video: {
+    cursor: "always"
+  },
+  audio: false
+};
 
-    let chunks = []
-    mediaRecorder.addEventListener('dataavailable', function(e) {
-        chunks.push(e.data)
-    })
+// Set event listeners for the start and stop buttons
+startElem.addEventListener("click", (evt) => {
+  startCapture();
+}, false);
 
-        mediaRecorder.addEventListener('stop', function(){
-      let blob = new Blob(chunks, {
-          type: chunks[0].type
-      })
-      let url = URL.createObjectURL(blob)
-
-     // let video = document.querySelector("video")
-    //  video.src = url
-
-      let a = document.createElement('a')
-      a.href = url
-      a.download = 'video.webm'
-      a.click()
-  })
+stopElem.addEventListener("click", (evt) => {
+  stopCapture();
+}, false);
 
     //we have to start the recorder manually
     mediaRecorder.start()
