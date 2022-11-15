@@ -23,7 +23,7 @@ stopElem.addEventListener("click", (evt) => {
 
     //we have to start the recorder manually
     mediaRecorder.start()
-})
+
 
 console.log = (msg) => logElem.innerHTML += `${msg}<br>`;
 console.error = (msg) => logElem.innerHTML += `<span class="error">${msg}</span><br>`;
